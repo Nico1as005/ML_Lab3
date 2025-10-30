@@ -2,10 +2,10 @@
 Датасет YearPredictionMSD
 
 # Загрузка dataset
-
+```
 def load_yearpredictionmsd_data(file_path):
     try:
-        data = pd.read_csv(file_path, header=None, nrows=100000) #первые 10к строк
+        data = pd.read_csv(file_path, header=None, nrows=100000)
 
         X_df = data.iloc[:, 1:]
         y_df = data.iloc[:, 0]
@@ -21,7 +21,7 @@ def load_yearpredictionmsd_data(file_path):
     except Exception as e:
         print(f"Ошибка при загрузке данных")
         raise
-
+```
 Осуществляется подгрузка с сервера. В данном варианте я рассматривал 2 степени полиномов.
 
 degrees = range(1, 3) # Это создает диапазон [1, 2]
