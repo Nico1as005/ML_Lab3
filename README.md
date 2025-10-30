@@ -1,13 +1,26 @@
 # Вариант 10
 Датасет YearPredictionMSD
 
-Загрузка dataset
-concrete_compressive_strength = fetch_ucirepo(id=165)
+# Загрузка dataset
 
-# data (as pandas dataframes)
-X = concrete_compressive_strength.data.features
-y = concrete_compressive_strength.data.targets
-x - Features, Признаки. y - Targets, Цели
+def load_yearpredictionmsd_data(file_path):
+    try:
+        data = pd.read_csv(file_path, header=None, nrows=100000) #первые 10к строк
+
+        X_df = data.iloc[:, 1:]
+        y_df = data.iloc[:, 0]
+
+        X_df = X_df.astype(float)
+        y_df = y_df.astype(float)
+
+        return X_df, y_df
+
+    except FileNotFoundError:
+        print(f"Файл не найден")
+        raise
+    except Exception as e:
+        print(f"Ошибка при загрузке данных")
+        raise
 
 Осуществляется подгрузка с сервера. В данном варианте я рассматривал 2 степени полиномов.
 
